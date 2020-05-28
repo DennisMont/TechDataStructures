@@ -139,10 +139,34 @@ public class Analyzer {
 	 */
 	public static double calculateSentenceScore(Map<String, Double> wordScores, String sentence) {
 
-		/* IMPLEMENT THIS METHOD! */
+		if(wordScores.isEmpty() || wordScores == null) {
+			return 0;
+		} else if (sentence.isEmpty() || sentence.equals(null)) {
+			return 0;
+		}
 		
-		return 0; // this line is here only so this code will compile if you don't modify it
-
+		double scores = 0;
+		
+		String[] wordsInSentence = sentence.split(" ");
+		List<String> arrayWordString = new ArrayList<>();
+		arrayWordString = Arrays.asList(wordsInSentence);
+		Iterator<String> stringIterator = arrayWordString.iterator();
+		
+		StringBuilder word = new StringBuilder();
+		
+		while(stringIterator.hasNext()) {
+			word.setLength(0);
+			word.append(stringIterator.next().toLowerCase());
+			
+			if (!word.substring(0, 1).matches("[a-z]")) { continue; }
+			
+			if (wordScores.containsKey(word.toString())) {
+				scores = scores + wordScores.get(word.toString());
+			} else {
+				wordScores.put(word.toString(), 0.0);
+			}
+		}
+		return scores / arrayWordString.size(); // this line is here only so this code will compile if you don't modify it
 	}
 	
 	/*
