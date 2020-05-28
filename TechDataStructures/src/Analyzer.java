@@ -117,10 +117,20 @@ public class Analyzer {
 	 * Implement this method in Part 3
 	 */
 	public static Map<String, Double> calculateScores(Set<Word> words) {
-
-		/* IMPLEMENT THIS METHOD! */
-		
-		return null; // this line is here only so this code will compile if you don't modify it
+		HashMap<String, Double> wordsScores = new HashMap<>();
+		if(words.isEmpty() || words == null) {
+			return wordsScores;
+		}
+		Iterator<Word> wordIterator = words.iterator();
+		Word localWordObject;
+		double score;
+		while(wordIterator.hasNext()) {
+			localWordObject = wordIterator.next();
+			if (localWordObject == null) { continue; }
+			score = localWordObject.calculateScore();
+			wordsScores.put(localWordObject.getText(), score);
+		}
+		return wordsScores; // this line is here only so this code will compile if you don't modify it
 
 	}
 	
