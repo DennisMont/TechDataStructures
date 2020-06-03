@@ -1,0 +1,12 @@
+
+public class Door implements MapSite{
+
+	public boolean isOpen;
+	public Room room1;
+	public Room room2;
+	
+	@Override
+	public void enter() {
+		
+	}
+}
